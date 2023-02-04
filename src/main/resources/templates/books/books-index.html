@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Книги</title>
+    <link href="style.css" rel="stylesheet">
+    <header th:insert="/fragments/header :: headerMain"></header>
+</head>
+<body>
+<a href="/books/add/" class="btn btn-success">Добавить книгу</a>
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Название</th>
+            <th>Год издания</th>
+            <th>Жанр</th>
+            <th>Автор</th>
+        </tr>
+        <tr th:each="el : ${books}">
+            <td th:text="${el.name }"></td>
+            <td th:text="${el.year }"></td>
+            <td th:text="${el.genre.name }"></td>
+            <td th:text="${el.author.surname}+' '+${el.author.name}+' '+${el.author.middlename}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

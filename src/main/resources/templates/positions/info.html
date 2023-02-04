@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о должности</title>
+  <link href="style.css" rel="stylesheet">
+  <header th:insert="/fragments/header :: headerMain"></header>
+</head>
+<body>
+<div class="container">
+    <div class="container">
+        <h1 th:text="'Должность: '+${one_position.getName()}"></h1>
+        <h1 th:text="'Оклад: '+${one_position.getSalary()}"></h1>
+    </div>
+    <a th:href="'/positions/detail/'+${one_position.UID}+'/upd'" class="btn btn-warning">Редактировать</a>
+    <form th:action="'/positions/detail/'+${one_position.UID}+'/del'" method="post">
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
+    <a href="/positions/" class="btn btn-success">Назад</a>
+</div>
+</body>
+</html>

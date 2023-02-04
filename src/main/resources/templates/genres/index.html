@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Жанры</title>
+    <link href="style.css" rel="stylesheet">
+    <header th:insert="/fragments/header :: headerMain"></header>
+</head>
+<body>
+<h1>Список жанров</h1>
+<a href="/genres/add/" class="btn btn-success">Добавить жанр</a>
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Название</th>
+            <th>Действие</th>
+        </tr>
+        <tr th:each="el : ${genres_list}">
+            <td th:text="${el.name}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="'/genres/detail/'+${el.UID}">Подробнее...</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

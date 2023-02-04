@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Книги в библиотеке</title>
+    <link href="style.css" rel="stylesheet">
+    <header th:insert="/fragments/header :: headerMain"></header>
+</head>
+<body>
+<a href="/books_library/add/" class="btn btn-success">Добавить книгу в библиотеку</a>
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Шкаф</th>
+            <th>Полка</th>
+            <th>Количество</th>
+            <th>Книга</th>
+            <th>Секция</th>
+        </tr>
+        <tr th:each="el : ${bookslibrary}">
+            <td th:text="${el.numberrack }"></td>
+            <td th:text="${el.numbershelf }"></td>
+            <td th:text="${el.count }"></td>
+            <td th:text="${el.books.name }"></td>
+            <td th:text="${el.sections.name}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о жанрах</title>
+  <link href="style.css" rel="stylesheet">
+  <header th:insert="/fragments/header :: headerMain"></header>
+</head>
+<body>
+<div class="container">
+    <div class="container">
+        <h1 th:text="'Жанр: '+${one_genre.getName()}"></h1>
+    </div>
+    <a th:href="'/genres/detail/'+${one_genre.UID}+'/upd'" class="btn btn-warning">Редактировать</a>
+    <form th:action="'/genres/detail/'+${one_genre.UID}+'/del'" method="post">
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
+    <a href="/genres/" class="btn btn-success">Назад</a>
+</div>
+</body>
+</html>

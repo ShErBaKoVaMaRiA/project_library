@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о подразделении</title>
+  <link href="style.css" rel="stylesheet">
+  <header th:insert="/fragments/header :: headerMain"></header>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="'Позразделение '+${one_division.name}"></h1>
+    <div class="container">
+        <h2 th:text="'Адрес: '+${one_division.getAddress()}"></h2>
+    </div>
+    <a th:href="'/divisions/detail/'+${one_division.UID}+'/upd'" class="btn btn-warning">Редактировать</a>
+    <form th:action="'/divisions/detail/'+${one_division.UID}+'/del'" method="post">
+        <button type="submit" class="btn btn-danger">Удалить</button>
+    </form>
+    <a href="/divisions/" class="btn btn-success">Назад</a>
+</div>
+</body>
+</html>

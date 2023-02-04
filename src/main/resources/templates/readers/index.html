@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Читатели</title>
+    <link href="style.css" rel="stylesheet">
+    <header th:insert="/fragments/header :: headerMain"></header>
+</head>
+<body>
+<h1>Список читателей</h1>
+<div class="container">
+    <form method="get" action="/readers/filter/">
+        <input class="form-control" name="surname" type="text">
+        <input class="btn btn-info" type="submit" value="Найти">
+    </form>
+    <form method="get" action="/readers/filtercontains/">
+        <input class="form-control" name="surname" type="text">
+        <input class="btn btn-info" type="submit" value="Найти">
+    </form>
+</div>
+<a href="/readers/add/" class="btn btn-success">Добавить читателя</a>
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Дата рождения</th>
+            <th>Паспорт</th>
+            <th>Телефон</th>
+            <th>Действие</th>
+        </tr>
+        <tr th:each="el : ${readers_list}">
+            <td th:text="${el.surname}"></td>
+            <td th:text="${el.name}"></td>
+            <td th:text="${el.middlename}"></td>
+            <td th:text="${el.datebirthday}"></td>
+            <td th:text="${el.passport}"></td>
+            <td th:text="${el.telefon}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="'/readers/detail/'+${el.UID}">Подробнее...</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Должности</title>
+    <link href="style.css" rel="stylesheet">
+    <header th:insert="/fragments/header :: headerMain"></header>
+</head>
+<body>
+<h1>Список должностей</h1>
+<a href="/positions/add/" class="btn btn-success">Добавить должность</a>
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Название</th>
+            <th>Оклад</th>
+            <th>Действие</th>
+        </tr>
+        <tr th:each="el : ${positions_list}">
+            <td th:text="${el.name}"></td>
+            <td th:text="${el.salary}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="'/positions/detail/'+${el.UID}">Подробнее...</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

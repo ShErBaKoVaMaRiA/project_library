@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление книг</title>
+</head>
+<body>
+<header th:insert="/fragments/header :: headerMain"></header>
+<form method="post">
+    <input type="text" name="name" placeholder="Название">
+    <input type="text" name="year" placeholder="Год издания">
+    <select  name="authors_uid">
+        <div th:each="element : ${authors}">
+            <option th:text="${element.UID}"></option>
+        </div>
+    </select>
+    <select  name="genres_uid">
+        <div th:each="element : ${genres}">
+            <option th:text="${element.UID}"></option>
+        </div>
+    </select>
+    <br>
+    <button type="submit">Добавить</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Возвращение</title>
+    <link href="style.css" rel="stylesheet">
+    <header th:insert="/fragments/header :: headerMain"></header>
+</head>
+<body>
+<a href="/extradition_books/add/" class="btn btn-success">Добавить возвращение книги</a>
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Дата получения</th>
+            <th>Дата возвращения</th>
+            <th>Книга</th>
+            <th>Читательский билет</th>
+            <th>Сотрудник</th>
+        </tr>
+        <tr th:each="el : ${extradition_books}">
+            <td th:text="${el.dateextradition }"></td>
+            <td th:text="${el.datereturn }"></td>
+            <td th:text="${el.books.name }"></td>
+            <td th:text="32"></td>
+            <td th:text="${el.employees.surname}+' '+${el.employees.name}+' '+${el.employees.middlename}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

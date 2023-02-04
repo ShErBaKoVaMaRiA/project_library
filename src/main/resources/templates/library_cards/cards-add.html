@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Добавление читательского билета</title>
+  <meta charset="UTF-8">
+  <link href="style.css" rel="stylesheet">
+  <header th:insert="/fragments/header :: headerMain"></header>
+</head>
+
+<body>
+<form th:action="${'/library_cards/add'}" method="post">
+  <input type="text" name="Date_Open" placeholder="Дата открытия">
+  <input type="text" name="Date_Close" placeholder="Дата закрытия">
+
+  <select  name="readers_uid">
+    <div th:each="element : ${readers}">
+      <option th:text="${element.UID}"></option>
+    </div>
+  </select>
+  <br>
+  <button type="submit">Добавить билет</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление книг в библиотеку</title>
+</head>
+<body>
+<header th:insert="/fragments/header :: headerMain"></header>
+<form method="post">
+    <input type="text" name="numberrack" placeholder="Шкаф">
+    <input type="text" name="numbershelf" placeholder="Полка">
+    <input type="text" name="count" placeholder="Количество">
+    <select  name="books_uid">
+        <div th:each="element : ${books}">
+            <option th:text="${element.UID}"></option>
+        </div>
+    </select>
+    <select name="sections_uid">
+        <div th:each="element : ${sections}">
+            <option th:text="${element.UID}"></option>
+        </div>
+    </select>
+    <br>
+    <button type="submit">Добавить</button>
+</form>
+
+</body>
+</html>

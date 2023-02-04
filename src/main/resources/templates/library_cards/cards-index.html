@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Читательские билеты</title>
+    <link href="style.css" rel="stylesheet">
+    <header th:insert="/fragments/header :: headerMain"></header>
+</head>
+<body>
+<a href="/library_cards/add/" class="btn btn-success">Добавить билет</a>
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Дата открытия</th>
+            <th>Дата закрытия</th>
+            <th>Читатель</th>
+        </tr>
+        <tr th:each="el : ${library_cards}">
+            <td th:text="${el.date_open }"></td>
+            <td th:text="${el.date_close }"></td>
+            <td th:text="${el.readers.surname}+' '+${el.readers.name}+' '+${el.readers.middlename}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Подразделения</title>
+    <link href="style.css" rel="stylesheet">
+    <header th:insert="/fragments/header :: headerMain"></header>
+</head>
+<body>
+<h1>Список подразделений</h1>
+<a href="/divisions/add/" class="btn btn-success">Добавить подразделение</a>
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Название</th>
+            <th>Адрес</th>
+            <th>Действие</th>
+        </tr>
+        <tr th:each="el : ${division_list}">
+            <td th:text="${el.name}"></td>
+            <td th:text="${el.address}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="'/divisions/detail/'+${el.UID}">Подробнее...</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление автора</title>
+    <link href="style.css" rel="stylesheet">
+    <header th:insert="/fragments/header :: headerMain"></header>
+</head>
+<body>
+<h1>Добавление автора</h1>
+<form method="post" th:object="${authors}">
+    <label>Фамилия</label>
+    <input class="form-control" type="text" th:field="*{surname}"  name="surname">
+    <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" style="color: red"></div>
+    <label>Имя</label>
+    <input class="form-control" type="text" th:field="*{name}"  name="name">
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></div>
+    <label>Отчество</label>
+    <input class="form-control" type="text" th:field="*{middlename}"  name="middlename">
+    <div th:if="${#fields.hasErrors('middlename')}" th:errors="*{middlename}" style="color: red"></div>
+    <input class="btn btn-success" type="submit" value="Добавить автора">
+</form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление читателя</title>
+    <link href="style.css" rel="stylesheet">
+    <header th:insert="/fragments/header :: headerMain"></header>
+</head>
+<body>
+<h1>Добавление читателя</h1>
+<form method="post" th:object="${readers}">
+    <label>Фамилия</label>
+    <input class="form-control" type="text" th:field="*{surname}"  name="surname">
+    <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" style="color: red"></div>
+    <label>Имя</label>
+    <input class="form-control" type="text" th:field="*{name}"  name="name">
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></div>
+    <label>Отчество</label>
+    <input class="form-control" type="text" th:field="*{middlename}"  name="middlename">
+    <div th:if="${#fields.hasErrors('middlename')}" th:errors="*{middlename}" style="color: red"></div>
+    <label>Дата рождения</label>
+    <input class="form-control" type="text" th:field="*{datebirthday}"  name="datebirthday">
+    <div th:if="${#fields.hasErrors('datebirthday')}" th:errors="*{datebirthday}" style="color: red"></div>
+    <label>Паспорт</label>
+    <input class="form-control" type="text" th:field="*{passport}"  name="passport">
+    <div th:if="${#fields.hasErrors('passport')}" th:errors="*{passport}" style="color: red"></div>
+    <label>Телефон</label>
+    <input class="form-control" type="text" th:field="*{telefon}"  name="telefon">
+    <div th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}" style="color: red"></div>
+
+    <input class="btn btn-success" type="submit" value="Добавить читателя">
+</form>
+</body>
+</html>
