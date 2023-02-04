@@ -3,6 +3,7 @@ package com.example.project_library.Controllers;
 import com.example.project_library.Models.Readers;
 import com.example.project_library.Repository.ReadersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/readers")
-
+@PreAuthorize("hasAnyAuthority('LIBRARIAN')")
 public class ReaderController {
     @Autowired
     ReadersRepository readersRepository;

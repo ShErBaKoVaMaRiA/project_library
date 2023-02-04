@@ -16,7 +16,7 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/divisions")
-
+@PreAuthorize("hasAnyAuthority('MANAGER')")
 public class DivisionController {
     @Autowired
     DivisionsRepository divisionsRepository;

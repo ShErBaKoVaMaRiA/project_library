@@ -5,6 +5,7 @@ import com.example.project_library.Repository.DivisionsRepository;
 import com.example.project_library.Repository.EmployeesRepository;
 import com.example.project_library.Repository.PositionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/employees")
-
+@PreAuthorize("hasAnyAuthority('MANAGER')")
 public class EmployeeController {
     @Autowired
     EmployeesRepository employeesRepository;

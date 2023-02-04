@@ -16,6 +16,7 @@ import java.io.Console;
 import java.sql.Date;
 
 @Controller
+@PreAuthorize("hasAnyAuthority('LIBRARIAN')")
 public class LibraryCardController {
     @Autowired
     public LibraryCardsRepository libraryCardsRepository;
