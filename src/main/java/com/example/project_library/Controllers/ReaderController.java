@@ -74,7 +74,7 @@ public class ReaderController {
     @GetMapping ("/detail/{id}/upd")
     public String  updateView(@PathVariable Long id,Model model)
     {
-        model.addAttribute("one_reader",readersRepository.findById(id).orElseThrow());
+        model.addAttribute("readers",readersRepository.findById(id).orElseThrow());
         return "readers/update";
     }
 

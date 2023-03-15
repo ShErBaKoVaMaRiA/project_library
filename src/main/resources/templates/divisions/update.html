@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h1>Редактирование подразделения</h1>
-    <form method="post" th:object="${one_division}">
+    <form method="post" th:object="${divisions}">
         <label>Название</label>
         <input class="form-control" type="text" th:field="*{name}"  name="name">
         <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></div>

@@ -58,7 +58,7 @@ public class DivisionController {
     @GetMapping ("/detail/{id}/upd")
     public String  updateView(@PathVariable Long id,Model model)
     {
-        model.addAttribute("one_division",divisionsRepository.findById(id).orElseThrow());
+        model.addAttribute("divisions",divisionsRepository.findById(id).orElseThrow());
         return "divisions/update";
     }
 

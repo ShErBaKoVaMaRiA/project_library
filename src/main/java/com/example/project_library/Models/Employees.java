@@ -9,15 +9,23 @@ public class Employees {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long UID;
+    @NotNull(message =  "Поле не может быть пустым")
     private String surname;
+    @NotNull(message =  "Поле не может быть пустым")
     private String name;
     private String middlename;
+    @NotNull(message =  "Поле не может быть пустым")
+    @Past(message="Значение должно бть прошедшего времени")
     private Date datebirthday;
+    @NotNull(message =  "Поле не может быть пустым")
     private String passport;
+    @Pattern(regexp="^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$",message="Неверный формат")
+    @NotNull(message =  "Поле не может быть пустым")
     private String telefon;
 
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     private Divisions divisions;
+
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     private Positions positions;
 

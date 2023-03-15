@@ -4,15 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Authors {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long UID;
-
+    @NotEmpty(message =  "Поле не может быть пустым")
     private String surname;
-
+    @NotEmpty(message =  "Поле не может быть пустым")
     private String name;
 
     private String middlename;

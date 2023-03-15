@@ -1,6 +1,7 @@
 package com.example.project_library.Models;
 
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,16 +15,18 @@ public class Readers {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long UID;
-    @NotBlank(message =  "Поле не может быть пустым")
+    @NotEmpty(message =  "Поле не может быть пустым")
     private String surname;
-    @NotBlank(message =  "Поле не может быть пустым")
+    @NotEmpty(message =  "Поле не может быть пустым")
     private String name;
     private String middlename;
 
+    @NotNull(message =  "Поле не может быть пустым")
     private Date datebirthday;
-
-    @Size(min=10, message="Паспорт заполнен неверно")
+    @NotEmpty(message =  "Поле не может быть пустым")
+    @Size(min=10,max=11, message="Паспорт заполнен неверно")
     private String passport;
+    @NotEmpty(message =  "Поле не может быть пустым")
     @Pattern(regexp="^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$",message="Неверный формат")
     private String telefon;
 

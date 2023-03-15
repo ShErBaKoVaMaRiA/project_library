@@ -19,7 +19,7 @@
     <input class="form-control" type="text" th:field="*{middlename}"  name="middlename">
     <div th:if="${#fields.hasErrors('middlename')}" th:errors="*{middlename}" style="color: red"></div>
     <label>Дата рождения</label>
-    <input class="form-control" type="text" th:field="*{datebirthday}"  name="datebirthday">
+    <input class="form-control" type="text" th:field="*{datebirthday}" placeholder="гггг-мм-дд"  name="datebirthday">
     <div th:if="${#fields.hasErrors('datebirthday')}" th:errors="*{datebirthday}" style="color: red"></div>
     <label>Паспорт</label>
     <input class="form-control" type="text" th:field="*{passport}"  name="passport">
@@ -27,7 +27,6 @@
     <label>Телефон</label>
     <input class="form-control" type="text" th:field="*{telefon}"  name="telefon">
     <div th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}" style="color: red"></div>
-
     <input class="btn btn-success" type="submit" value="Добавить читателя">
 </form>
 </body>

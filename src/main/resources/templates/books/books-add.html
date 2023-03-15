@@ -6,19 +6,23 @@
 </head>
 <body>
 <header th:insert="/fragments/header :: headerMain"></header>
-<form method="post">
-    <input type="text" name="name" placeholder="Название">
-    <input type="text" name="year" placeholder="Год издания">
-    <select  name="authors_uid">
+<form method="post" th:object="${books}">
+    <input type="text" name="name" th:field="*{name}" placeholder="Наименование">
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></div>
+    <input class="form-control" type="text" name="year" th:field="*{year}"  placeholder="Год издания">
+    <div th:if="${#fields.hasErrors('year')}" th:errors="*{year}" style="color: red"></div>
+    <select  name="authors">
         <div th:each="element : ${authors}">
-            <option th:text="${element.UID}"></option>
+            <option th:value="${element.UID}" th:text="${element.surname}+' '+${element.name}+' '+${element.middlename}"></option>
         </div>
     </select>
-    <select  name="genres_uid">
+    <div th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color: red"></div>
+    <select  name="genres">
         <div th:each="element : ${genres}">
-            <option th:text="${element.UID}"></option>
+            <option th:value="${element.UID}" th:text="${element.name}"></option>
         </div>
     </select>
+    <div th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}" style="color: red"></div>
     <br>
     <button type="submit">Добавить</button>
 </form>

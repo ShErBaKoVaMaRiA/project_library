@@ -59,7 +59,7 @@ public class GenreController {
     @GetMapping ("/detail/{id}/upd")
     public String updateView(@PathVariable Long id,Model model)
     {
-        model.addAttribute("one_genre", classRepository.findById(id).orElseThrow());
+        model.addAttribute("genres", classRepository.findById(id).orElseThrow());
         return "genres/update";
     }
 

@@ -59,7 +59,7 @@ public class PositionController {
     @GetMapping ("/detail/{id}/upd")
     public String updateView(@PathVariable Long id,Model model)
     {
-        model.addAttribute("one_position", classRepository.findById(id).orElseThrow());
+        model.addAttribute("positions", classRepository.findById(id).orElseThrow());
         return "positions/update";
     }
 

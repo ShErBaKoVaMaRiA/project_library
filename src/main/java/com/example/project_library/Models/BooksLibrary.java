@@ -1,15 +1,23 @@
 package com.example.project_library.Models;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class BooksLibrary {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long UID;
-
+    @NotNull(message =  "Поле не может быть пустым")
+    @Min(value=1, message="Значение в поле не может быть меньше 1")
     private int numberrack;
+    @NotNull(message =  "Поле не может быть пустым")
+    @Min(value=1, message="Значение в поле не может быть меньше 1")
     private int numbershelf;
+    @NotNull(message =  "Поле не может быть пустым")
+    @Min(value=0, message="Значение в поле не может быть меньше 0")
     private int count;
 
     @ManyToOne(optional = true, cascade = CascadeType.ALL)

@@ -1,18 +1,22 @@
 package com.example.project_library.Models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Books {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long UID;
-
+    @NotEmpty(message =  "Поле не может быть пустым")
     private String name;
+    @NotEmpty(message =  "Поле не может быть пустым")
     private String year;
 
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     private Genres genre;
+
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     private Authors author;
 

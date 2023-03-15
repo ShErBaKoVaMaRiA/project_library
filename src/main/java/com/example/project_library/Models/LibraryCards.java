@@ -1,6 +1,7 @@
 package com.example.project_library.Models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 @Entity
@@ -8,9 +9,11 @@ public class LibraryCards {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long UID;
-
+    @NotNull(message =  "Поле не может быть пустым")
     private Date date_open;
+    @NotNull(message =  "Поле не может быть пустым")
     private Date date_close;
+
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     private Readers readers;
 

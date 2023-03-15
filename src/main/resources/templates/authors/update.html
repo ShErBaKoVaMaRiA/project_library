@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h1>Редактирование автора</h1>
-    <form method="post" th:object="${one_author}">
+    <form method="post" th:object="${authors}">
         <label>Фамилия</label>
         <input class="form-control" type="text" th:field="*{surname}"  name="surname">
         <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" style="color: red"></div>

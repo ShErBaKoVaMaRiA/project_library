@@ -59,7 +59,7 @@ public class AuthorController {
     @GetMapping ("/detail/{id}/upd")
     public String  updateView(@PathVariable Long id,Model model)
     {
-        model.addAttribute("one_author",authorsRepository.findById(id).orElseThrow());
+        model.addAttribute("authors",authorsRepository.findById(id).orElseThrow());
         return "authors/update";
     }
 

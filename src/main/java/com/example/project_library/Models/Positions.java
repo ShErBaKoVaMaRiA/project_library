@@ -4,13 +4,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Positions {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long UID;
+    @NotEmpty(message =  "Поле не может быть пустым")
     private String name;
+    @NotNull(message =  "Поле не может быть пустым")
+    @Min(value=1000,message="Значение должно быть больше или равно 1000")
     private float salary;
     public Positions() {
     }

@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h1>Редактирование читателя</h1>
-    <form method="post" th:object="${one_reader}">
+    <form method="post" th:object="${readers}">
         <label>Фамилия</label>
         <input class="form-control" type="text" th:field="*{surname}"  name="surname">
         <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" style="color: red"></div>
@@ -20,7 +20,7 @@
         <input class="form-control" type="text" th:field="*{middlename}"  name="middlename">
         <div th:if="${#fields.hasErrors('middlename')}" th:errors="*{middlename}" style="color: red"></div>
         <label>Дата рождения</label>
-        <input class="form-control" type="text" th:field="*{datebirthday}"  name="datebirthday">
+        <input class="form-control" type="text" th:field="*{datebirthday}" placeholder="гггг-мм-дд" name="datebirthday">
         <div th:if="${#fields.hasErrors('datebirthday')}" th:errors="*{datebirthday}" style="color: red"></div>
         <label>Паспорт</label>
         <input class="form-control" type="text" th:field="*{passport}"  name="passport">
