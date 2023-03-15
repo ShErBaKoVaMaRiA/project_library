@@ -64,14 +64,12 @@ public class SectionController {
     }
 
     @PostMapping ("/detail/{id}/upd")
-    public String updateD( @Valid Sections sections, BindingResult bindingResult,@PathVariable Long id,Model model) {
+    public String updateD( @Valid Sections sections, BindingResult bindingResult, @PathVariable Long id) {
         if (bindingResult.hasErrors()) {
             return "sections/update";
         }else {
-            Sections section_obj = sectionsRepository.findById(id).orElseThrow();
-            sectionsRepository.delete(section_obj);
-            sectionsRepository.save(sections);
-            return "redirect:/sections/detail/" + sections.getUID();
+            sectionsRepository.updateSections(sections.getName(), id);
+            return "redirect:/sections/detail/" + id;
         }
     }
 }

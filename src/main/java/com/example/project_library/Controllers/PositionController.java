@@ -68,9 +68,7 @@ public class PositionController {
         if (bindingResult.hasErrors()) {
             return "positions/update";
         }
-        Positions position_obj = classRepository.findById(id).orElseThrow();
-        classRepository.delete(position_obj);
-        classRepository.save(positions);
-        return "redirect:/positions/detail/"+positions.getUID();
+        classRepository.updatePositions(positions.getName(),positions.getSalary(), id);
+        return "redirect:/positions/detail/"+id;
     }
 }

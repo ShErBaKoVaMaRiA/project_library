@@ -83,9 +83,7 @@ public class ReaderController {
         if (bindingResult.hasErrors()) {
             return "readers/update";
         }
-        Readers reader_obj = readersRepository.findById(id).orElseThrow();
-        readersRepository.delete(reader_obj);
-        readersRepository.save(readers);
-        return "redirect:/readers/detail/"+readers.getUID();
+        readersRepository.updateAuthors(readers.getSurname(),readers.getName(),readers.getMiddlename(),readers.getDatebirthday(),readers.getPassport(),readers.getTelefon(), id);
+        return "redirect:/readers/detail/"+id;
     }
 }

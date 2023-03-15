@@ -68,9 +68,7 @@ public class AuthorController {
         if (bindingResult.hasErrors()) {
             return "authors/update";
         }
-        Authors author_obj = authorsRepository.findById(id).orElseThrow();
-        authorsRepository.delete(author_obj);
-        authorsRepository.save(authors);
-        return "redirect:/authors/detail/"+authors.getUID();
+        authorsRepository.updateAuthors(authors.getSurname(),authors.getName(),authors.getMiddlename(), id);
+        return "redirect:/authors/detail/"+id;
     }
 }

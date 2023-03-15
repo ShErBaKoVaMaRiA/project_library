@@ -67,9 +67,7 @@ public class DivisionController {
         if (bindingResult.hasErrors()) {
             return "divisions/update";
         }
-        Divisions division_obj = divisionsRepository.findById(id).orElseThrow();
-        divisionsRepository.delete(division_obj);
-        divisionsRepository.save(divisions);
-        return "redirect:/divisions/detail/"+divisions.getUID();
+        divisionsRepository.updateDivisions(divisions.getName(),divisions.getAddress(), id);
+        return "redirect:/divisions/detail/"+id;
     }
 }

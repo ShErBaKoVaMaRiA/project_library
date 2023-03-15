@@ -68,9 +68,7 @@ public class GenreController {
         if (bindingResult.hasErrors()) {
             return "genres/update";
         }
-        Genres genre_obj = classRepository.findById(id).orElseThrow();
-        classRepository.delete(genre_obj);
-        classRepository.save(genres);
-        return "redirect:/genres/detail/"+genres.getUID();
+        classRepository.updateGenres(genres.getName(), id);
+        return "redirect:/genres/detail/"+id;
     }
 }
