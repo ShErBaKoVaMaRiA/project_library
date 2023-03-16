@@ -3,6 +3,7 @@ package com.example.project_library.Controllers;
 import com.example.project_library.Models.Positions;
 import com.example.project_library.Repository.PositionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +22,11 @@ public class PositionController {
     @Autowired
     PositionsRepository classRepository;
     @GetMapping("/")
-        public String index(Model model){
+        public String index(Model model) {
             Iterable<Positions> positionsIterable = classRepository.findAll();
             model.addAttribute("positions_list", positionsIterable);
-            return "positions/index";}
+            return "positions/index";
+    }
 
     @PostMapping("/add")
     public String Add(@Valid Positions positions, BindingResult bindingResult) {

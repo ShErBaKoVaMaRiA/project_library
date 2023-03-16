@@ -12,7 +12,7 @@
 <h1>Редактировать пользователя</h1>
 <form method="post">
   <div>
-    <input type="text" th:value="${user_object.username}">
+    <input type="text" readonly="readonly" th:value="${user_object.username}">
   </div>
   <input  th:field="*{user_object.username}" class="form-control" type="hidden" placeholder="Название">
 

@@ -10,9 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.sql.DataSource;
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -22,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/","/login","/registration").permitAll()
+                .antMatchers("/","/login","/registration","/css/**").permitAll()
                 .antMatchers("/admin").hasAnyAuthority("ADMIN")
                 .antMatchers("/divisions","/employees","/positions").hasAnyAuthority("MANAGER")
                 .antMatchers("/authors","/books","/books_library","/extradition_books","/genres","/library_cards","/readers","/sections").hasAnyAuthority("LIBRARIAN")

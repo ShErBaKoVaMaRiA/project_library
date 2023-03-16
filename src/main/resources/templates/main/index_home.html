@@ -3,29 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Меню</title>
-    <link href="style.css" rel="stylesheet">
     <header th:insert="/fragments/header :: headerMain"></header>
 <body>
-<div sec:authorize="hasAnyAuthority('MANAGER')">
+<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"  />
+<div id="bodyy">
+<div sec:authorize="hasAnyAuthority('MANAGER')" >
     <h1>Отдел кадров</h1>
-    <a href="/divisions/" acc= "hasRole('USER')" class="btn btn-success">++Подразделения</a>
-    <a href="/employees/" class="btn btn-success">+(валидация)Сотрудники</a>
-    <a href="/positions/" class="btn btn-success">++Должности</a>
+    <a href="/divisions/" acc= "hasRole('LIBRARIAN')" class="btn btn-success">Подразделения</a>
+    <a href="/positions/" acc= "hasRole('LIBRARIAN')" class="btn btn-success">Должности</a>
+    <a href="/employees/" acc= "hasRole('LIBRARIAN')" class="btn btn-success">Сотрудники</a>
 </div>
 <div sec:authorize="hasAnyAuthority('LIBRARIAN')">
     <h1>Библиотечный фонд</h1>
-    <a href="/authors/" class="btn btn-success">++Авторы</a>
-    <a href="/books/" class="btn btn-success">++Книги</a>
-    <a href="/books_library/" class="btn btn-success">+(валидация)Книги в библиотеке!</a>
-    <a href="/extradition_books/" class="btn btn-success">-Получение книг!</a>
-    <a href="/genres/" class="btn btn-success">++Жанры книг</a>
-    <a href="/library_cards/" class="btn btn-success">+(валидация)Читательские билеты!</a>
-    <a href="/readers/" class="btn btn-success">++Читатели</a>
-    <a href="/sections/" class="btn btn-success">++Секции книг</a>
+    <a href="/authors/" class="btn btn-success">Авторы</a>
+    <a href="/books/" class="btn btn-success">Книги</a>
+    <a href="/genres/" class="btn btn-success">Жанры книг</a>
+    <a href="/readers/" class="btn btn-success">Читатели</a>
+    <a href="/sections/" class="btn btn-success">Секции книг</a>
+    <a href="/books_library/" class="btn btn-success">Книги в библиотеке!</a>
+    <a href="/library_cards/" class="btn btn-success">Читательские билеты!</a>
+    <a href="/extradition_books/" class="btn btn-success">Получение книг!</a>
 </div>
 <div sec:authorize="hasAnyAuthority('ADMIN')">
     <h1>Пользователи</h1>
-    <a href="/admin/" class="btn btn-success">++АДМИНИСТРАТОР</a>
+    <a href="/admin/" acc= "hasRole('ADMIN')" class="btn btn-success">АДМИНИСТРАТОР</a>
 </div>
+    </div>
 </body>
 </html>
