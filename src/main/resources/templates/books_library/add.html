@@ -7,17 +7,17 @@
 <body>
 <header th:insert="/fragments/header :: headerMain"></header>
 <form method="post">
-    <input type="text" name="numberrack" placeholder="Шкаф">
-    <input type="text" name="numbershelf" placeholder="Полка">
-    <input type="text" name="count" placeholder="Количество">
+    <input type="number" name="numberrack" placeholder="Шкаф">
+    <input type="number" name="numbershelf" placeholder="Полка">
+    <input type="number" name="count" placeholder="Количество">
     <select  name="books_uid">
         <div th:each="element : ${books}">
-            <option th:text="${element.UID}"></option>
+            <option th:value="${element.UID}" th:text="${element.name}"></option>
         </div>
     </select>
     <select name="sections_uid">
         <div th:each="element : ${sections}">
-            <option th:text="${element.UID}"></option>
+            <option th:value="${element.UID}" th:text="${element.name}"></option>
         </div>
     </select>
     <br>

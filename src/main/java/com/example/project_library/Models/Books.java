@@ -1,5 +1,7 @@
 package com.example.project_library.Models;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -15,9 +17,11 @@ public class Books {
     private String year;
 
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "genre_uid")
     private Genres genre;
 
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_uid")
     private Authors author;
 
     public Books() {

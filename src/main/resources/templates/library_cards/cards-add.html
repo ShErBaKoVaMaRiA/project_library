@@ -14,7 +14,7 @@
 
   <select  name="readers_uid">
     <div th:each="element : ${readers}">
-      <option th:text="${element.UID}"></option>
+      <option th:value="${element.UID}" th:text="${element.surname}+' '+${element.name}+' '+${element.middlename}"></option>
     </div>
   </select>
   <br>

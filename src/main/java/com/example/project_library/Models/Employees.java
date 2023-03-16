@@ -1,4 +1,6 @@
 package com.example.project_library.Models;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.sql.Date;
@@ -9,23 +11,23 @@ public class Employees {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long UID;
-    @NotNull(message =  "Поле не может быть пустым")
+    @NotEmpty(message =  "Поле не может быть пустым")
     private String surname;
-    @NotNull(message =  "Поле не может быть пустым")
+    @NotEmpty(message =  "Поле не может быть пустым")
     private String name;
     private String middlename;
     @NotNull(message =  "Поле не может быть пустым")
-    @Past(message="Значение должно бть прошедшего времени")
     private Date datebirthday;
-    @NotNull(message =  "Поле не может быть пустым")
+    @NotEmpty(message =  "Поле не может быть пустым")
+    @Size(min=10,max=11, message="Паспорт заполнен неверно")
     private String passport;
     @Pattern(regexp="^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$",message="Неверный формат")
-    @NotNull(message =  "Поле не может быть пустым")
+    @NotEmpty(message =  "Поле не может быть пустым")
     private String telefon;
-
+    @NotNull(message =  "Поле не может быть пустым")
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     private Divisions divisions;
-
+    @NotNull(message =  "Поле не может быть пустым")
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     private Positions positions;
 

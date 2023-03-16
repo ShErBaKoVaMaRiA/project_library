@@ -5,14 +5,18 @@ import com.example.project_library.Repository.DivisionsRepository;
 import com.example.project_library.Repository.EmployeesRepository;
 import com.example.project_library.Repository.PositionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -38,7 +42,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public String AddView(Model model){
+    public String AddView(Model model,Employees employees){
         Iterable<Positions> positions = positionsRepository.findAll();
         Iterable<Divisions> divisions = divisionsRepository.findAll();
         model.addAttribute("positions", positions);
@@ -47,11 +51,11 @@ public class EmployeeController {
     }
 
     @PostMapping("/add")
-    public String AddEmployee(@RequestParam String surname,@RequestParam String name,@RequestParam String middlename,@RequestParam Date datebirthday,@RequestParam String passport,@RequestParam String telefon,@RequestParam(name="divisions_uid") Long divisions, @RequestParam(name="positions_uid") Long positions, Model model) {
-        Positions positionsfind = positionsRepository.findPositionsByUID(positions);
-        Divisions divisionsfind = divisionsRepository.findDivisionsByUID(divisions);
-        Employees employees = new Employees(surname,name,middlename,datebirthday,passport,telefon,divisionsfind,positionsfind);
-        employeesRepository.save(employees);
-        return "redirect:/employees";
+    public String AddEmployee(@RequestParam String surname,@RequestParam String name,@RequestParam String middlename,@RequestParam Date datebirthday,@RequestParam String passport,@RequestParam String telefon,@RequestParam Long divisions_uid, @RequestParam Long positions_uid) {
+        Positions positionsfind = positionsRepository.findPositionsByUID(positions_uid);
+        Divisions divisionsfind = divisionsRepository.findDivisionsByUID(divisions_uid);
+        Employees employee_one = new Employees(surname, name, middlename, datebirthday, passport, telefon, divisionsfind, positionsfind);
+        employeesRepository.save(employee_one);
+        return "redirect:/employees/";
     }
 }

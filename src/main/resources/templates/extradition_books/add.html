@@ -11,7 +11,7 @@
     <input type="text" name="datereturn" placeholder="Дата возвращения">
     <select  name="books_uid">
         <div th:each="element : ${books}">
-            <option th:text="${element.UID}"></option>
+            <option th:value="${element.UID}" th:text="${element.name}"></option>
         </div>
     </select>
     <select  name="library_cards_uid">
@@ -21,7 +21,7 @@
     </select>
     <select name="employees_uid">
         <div th:each="element : ${employees}">
-            <option th:text="${element.UID}"></option>
+            <option th:value="${element.UID}" th:text="${element.surname}+' '+${element.name}+' '+${element.middlename}"></option>
         </div>
     </select>
     <br>

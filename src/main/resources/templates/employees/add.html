@@ -8,29 +8,35 @@
 </head>
 <body>
 <h1>Добавление сотрудника</h1>
-<form method="post">
+<form method="post" th:object="${employees}">
     <label>Фамилия</label>
-    <input class="form-control" type="text" name="surname">
+    <input class="form-control" type="text" th:field="*{surname}" name="surname">
+    <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" style="color: red"></div>
     <label>Имя</label>
-    <input class="form-control" type="text"  name="name">
+    <input class="form-control" type="text" th:field="*{name}" name="name">
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></div>
     <label>Отчество</label>
-    <input class="form-control" type="text" name="middlename">
+    <input class="form-control" type="text" th:field="*{middlename}" name="middlename">
+    <div th:if="${#fields.hasErrors('middlename')}" th:errors="*{middlename}" style="color: red"></div>
     <label>Дата рождения</label>
-    <input class="form-control" type="text"  name="datebirthday">
+    <input class="form-control" type="text" th:field="*{datebirthday}" placeholder="yyyy-mm-dd"  name="datebirthday">
+    <div th:if="${#fields.hasErrors('datebirthday')}" th:errors="*{datebirthday}" style="color: red"></div>
     <label>Паспорт</label>
-    <input class="form-control" type="text"  name="passport">
+    <input class="form-control" type="text" th:field="*{passport}"  name="passport">
+    <div th:if="${#fields.hasErrors('passport')}" th:errors="*{passport}" style="color: red"></div>
     <label>Телефон</label>
-    <input class="form-control" type="text"  name="telefon">
+    <input class="form-control" type="text" th:field="*{telefon}"  name="telefon">
+    <div th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}" style="color: red"></div>
     <label>Должность</label>
     <select  name="positions_uid">
         <div th:each="element : ${positions}">
-            <option th:text="${element.UID}"></option>
+            <option th:value="${element.UID}" th:text="${element.name}"></option>
         </div>
     </select>
     <label>Подразделение</label>
     <select  name="divisions_uid">
         <div th:each="element : ${divisions}">
-            <option th:text="${element.UID}"></option>
+            <option th:value="${element.UID}" th:text="${element.name}" ></option>
         </div>
     </select>
 
