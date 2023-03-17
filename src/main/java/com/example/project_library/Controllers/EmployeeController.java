@@ -51,10 +51,17 @@ public class EmployeeController {
     }
 
     @PostMapping("/add")
-    public String AddEmployee(@RequestParam String surname,@RequestParam String name,@RequestParam String middlename,@RequestParam Date datebirthday,@RequestParam String passport,@RequestParam String telefon,@RequestParam Long divisions_uid, @RequestParam Long positions_uid) {
+    public String AddEmployee(@Valid Employees employees, BindingResult bindingResult, Long divisions_uid, Long positions_uid, Model model) {
+        if (bindingResult.hasErrors()) {
+            Iterable<Positions> positions = positionsRepository.findAll();
+            Iterable<Divisions> divisions = divisionsRepository.findAll();
+            model.addAttribute("positions", positions);
+            model.addAttribute("divisions", divisions);
+            return "employees/add";
+        }
         Positions positionsfind = positionsRepository.findPositionsByUID(positions_uid);
         Divisions divisionsfind = divisionsRepository.findDivisionsByUID(divisions_uid);
-        Employees employee_one = new Employees(surname, name, middlename, datebirthday, passport, telefon, divisionsfind, positionsfind);
+        Employees employee_one = new Employees(employees.getSurname(), employees.getName(), employees.getMiddlename(), employees.getDatebirthday(), employees.getPassport(), employees.getTelefon(), divisionsfind, positionsfind);
         employeesRepository.save(employee_one);
         return "redirect:/employees/";
     }

@@ -6,10 +6,13 @@
 </head>
 <body>
 <header th:insert="/fragments/header :: headerMain"></header>
-<form method="post">
-    <input type="number" name="numberrack" placeholder="Шкаф">
-    <input type="number" name="numbershelf" placeholder="Полка">
-    <input type="number" name="count" placeholder="Количество">
+<form method="post" th:object="${booksLibrary}">
+    <input class="form-control" type="number" th:field="*{numberrack}" name="numberrack" placeholder="Шкаф">
+    <div th:if="${#fields.hasErrors('numberrack')}" th:errors="*{numberrack}" style="color: red"></div>
+    <input class="form-control" type="number" th:field="*{numbershelf}" name="numbershelf" placeholder="Полка">
+    <div th:if="${#fields.hasErrors('numbershelf')}" th:errors="*{numbershelf}" style="color: red"></div>
+    <input class="form-control" type="number" th:field="*{count}" name="count" placeholder="Количество">
+    <div th:if="${#fields.hasErrors('count')}" th:errors="*{count}" style="color: red"></div>
     <select  name="books_uid">
         <div th:each="element : ${books}">
             <option th:value="${element.UID}" th:text="${element.name}"></option>

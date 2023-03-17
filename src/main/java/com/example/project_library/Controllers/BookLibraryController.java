@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.validation.Valid;
 
 @Controller
 @PreAuthorize("hasAnyAuthority('LIBRARIAN')")
@@ -36,7 +39,7 @@ public class BookLibraryController {
     }
 
     @GetMapping("/books_library/add")
-    public String Main(Model model) {
+    public String Main(Model model, BooksLibrary booksLibrary) {
         Iterable<Books> books = booksRepository.findAll();
         Iterable<Sections> sections = sectionsRepository.findAll();
         model.addAttribute("books", books);
@@ -45,11 +48,17 @@ public class BookLibraryController {
     }
 
     @PostMapping("/books_library/add")
-    public String Add(@RequestParam(name="numberrack") int numberrack, @RequestParam(name="numbershelf") int numbershelf,@RequestParam(name="count") int count, @RequestParam(name="books_uid") Long books, @RequestParam(name="sections_uid") Long sections, Model model) {
-
-        Books booksfind = booksRepository.findBooksByUID(books);
-        Sections sectionsfind = sectionsRepository.findSectionsByUID(sections);
-        BooksLibrary booksLibrary = new BooksLibrary(numberrack,numberrack,count,booksfind,sectionsfind);
+    public String Add(@Valid BooksLibrary bookslibrary,BindingResult bindingResult, Long books_uid, Long sections_uid, Model model) {
+        if (bindingResult.hasErrors()) {
+            Iterable<Books> books = booksRepository.findAll();
+            Iterable<Sections> sections = sectionsRepository.findAll();
+            model.addAttribute("books", books);
+            model.addAttribute("sections", sections);
+            return "books_library/add";
+        }
+        Books booksfind = booksRepository.findBooksByUID(books_uid);
+        Sections sectionsfind = sectionsRepository.findSectionsByUID(sections_uid);
+        BooksLibrary booksLibrary = new BooksLibrary(bookslibrary.getNumberrack(), bookslibrary.getNumbershelf(), bookslibrary.getCount(), booksfind,sectionsfind);
         booksLibraryRepository.save(booksLibrary);
         return "redirect:/books_library";
     }

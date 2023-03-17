@@ -6,9 +6,11 @@
 </head>
 <body>
 <header th:insert="/fragments/header :: headerMain"></header>
-<form method="post">
-    <input type="text" name="dateextradition" placeholder="Дата получения">
-    <input type="text" name="datereturn" placeholder="Дата возвращения">
+<form method="post" th:object="${extraditionBooks}">
+    <input class="form-control" type="text" th:field="*{dateextradition}" name="dateextradition" placeholder="Дата получения">
+    <div th:if="${#fields.hasErrors('dateextradition')}" th:errors="*{dateextradition}" style="color: red"></div>
+    <input class="form-control" type="text" th:field="*{datereturn}" name="datereturn" placeholder="Дата возвращения">
+    <div th:if="${#fields.hasErrors('datereturn')}" th:errors="*{datereturn}" style="color: red"></div>
     <select  name="books_uid">
         <div th:each="element : ${books}">
             <option th:value="${element.UID}" th:text="${element.name}"></option>

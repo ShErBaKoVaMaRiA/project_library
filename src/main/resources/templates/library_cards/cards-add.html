@@ -8,10 +8,11 @@
 </head>
 
 <body>
-<form th:action="${'/library_cards/add'}" method="post">
-  <input type="text" name="Date_Open" placeholder="Дата открытия">
-  <input type="text" name="Date_Close" placeholder="Дата закрытия">
-
+<form th:action="${'/library_cards/add'}" method="post" th:object="${libraryCards}">
+  <input class="form-control" type="text" th:field="*{date_open}" name="date_open" placeholder="Дата открытия">
+  <div th:if="${#fields.hasErrors('date_open')}" th:errors="*{date_open}" style="color: red"></div>
+  <input class="form-control" type="text" th:field="*{date_close}" name="date_close" placeholder="Дата закрытия">
+  <div th:if="${#fields.hasErrors('date_close')}" th:errors="*{date_close}" style="color: red"></div>
   <select  name="readers_uid">
     <div th:each="element : ${readers}">
       <option th:value="${element.UID}" th:text="${element.surname}+' '+${element.name}+' '+${element.middlename}"></option>
